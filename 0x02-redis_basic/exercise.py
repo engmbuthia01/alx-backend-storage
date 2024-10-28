@@ -12,8 +12,8 @@ from functools import wraps
 
 def count_calls(method: Callable) -> Callable:
     """Decorator to count how many times a method is called."""
-    @functools.wraps(method)
-    def wrapper(self, *args, **kwargs) -> Any:
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
         """
         Wrapped function that increments the
         call counter and calls the original method
