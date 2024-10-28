@@ -24,6 +24,7 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+
 class Cache:
     def __init__(self):
         """Initialize Redis client and flush database."""
