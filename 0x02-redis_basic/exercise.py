@@ -6,8 +6,8 @@ definition for Redis cache
 
 import redis
 import uuid
-from typing import Union, Callable, Optional, Any
-import functools
+from typing import Union, Callable, Optional
+from functools import wraps
 
 
 def count_calls(method: Callable) -> Callable:
@@ -18,13 +18,8 @@ def count_calls(method: Callable) -> Callable:
         Wrapped function that increments the
         call counter and calls the original method
         """
-        # Use the method's qualified name as the Redis key
         key = method.__qualname__
-
-        # Increment the call count for this method in Redis
         self._redis.incr(key)
-
-        # Call the original method and return its result
         return method(self, *args, **kwargs)
 
     return wrapper
